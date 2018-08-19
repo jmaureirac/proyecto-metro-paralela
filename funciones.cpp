@@ -47,7 +47,7 @@ void cargarLinea(char* fichero, linea *lx){
             
             linea nuevaEstacion;
             nuevaEstacion = (linea) malloc(sizeof(nodo));
-            
+                      
             if ( lineaArchivo[2] != ' ' ) {
                 /* SIGLA DE LARGO 3 */
                 nuevaEstacion->id = contador;
@@ -63,7 +63,6 @@ void cargarLinea(char* fichero, linea *lx){
                     nuevaEstacion->izq = L;
                     L->der = nuevaEstacion;                
                 }
-                //std::cout << "id: " << nuevaEstacion->id << "\tcod: " << nuevaEstacion->codigo << "\t   nombre: " << nuevaEstacion->nombre << "\t\t\t\t\tAnterior:" << nuevaEstacion->izq->nombre << std::endl;
             
             } else {
                 /* SIGLA DE LARGO 2 */
@@ -80,7 +79,6 @@ void cargarLinea(char* fichero, linea *lx){
                     nuevaEstacion->izq = L;
                     L->der = nuevaEstacion;                
                 }
-                //std::cout << "id: " << nuevaEstacion->id << "\tcod: " << nuevaEstacion->codigo << "\t   nombre: " << nuevaEstacion->nombre <<  "\t\t\t\t\tAnterior:" << nuevaEstacion->izq->nombre << std::endl;                
             }
             
             L = L->der; 
@@ -102,22 +100,38 @@ void imprimirLinea(linea lx) {
     L = lx;
     
     while(L != NULL) {
-        std::cout << "id: " << L->id << "\tcod: " << L->codigo << "\t   nombre: " << L->nombre;
+        std::cout << "id: " << L->id << "\tcod: " << L->codigo << "\t nombre: " << L->nombre;
         /* verificar si existe nodo izquierdo para evitar core */
         if (L->izq != NULL) {
-            std::cout << "\tAnterior: " << L->izq->nombre;
+            std::cout << "\t\t\tAnterior: " << L->izq->nombre;
         } else {
-            std::cout << "\tEs la primera estacion";
+            std::cout << "\t\t\tEs la primera estacion";
         }
         
         /* verificar si hay nodo derecho para evitar core */
         if (L->der != NULL) {
-            std::cout << "\tSiguiente: " << L->der->nombre << std::endl;
+            std::cout << "\t\t\tSiguiente: " << L->der->nombre << std::endl;
         } else {
-            std::cout << "\tEs la ultima estacion" << std::endl;
+            std::cout << "\t\t\tEs la ultima estacion" << std::endl;
         }
         L = L->der;
     }
 
 }
 
+/**
+ * Funcion para eliminar el primer nodo de la linea que aparecia en blanco
+ * @param lx Linea a la cual se le limpia el nodo
+ */
+void cleanLinea(linea *lx) {
+    linea primeraEstacion = *lx;
+    linea borrar = *lx;
+    
+    primeraEstacion = primeraEstacion->der;
+    
+    primeraEstacion->izq = NULL;
+    *lx = primeraEstacion;
+    
+    free(borrar);
+    
+}
