@@ -58,41 +58,33 @@ int main(int argc, char** argv) {
     cleanLinea(&l4a);
     cleanLinea(&l5);
     cleanLinea(&l6);
-//
-//    /* Ver por pantalla */
-//    cout << "\nL1: \n" << endl;
-//    imprimirLinea(l1);
-//
-//    cout << "\nL2: \n" << endl;
-//    imprimirLinea(l2);
-//
-//    cout << "\nL4: \n" << endl;
-//    imprimirLinea(l4);
-//
-//    cout << "\nL4a: \n" << endl;
-//    imprimirLinea(l4a);
-//
-//    cout << "\nL5: \n" << endl;
-//    imprimirLinea(l5);
-//
-//    cout << "\nL6: \n\n" << endl;
-//    imprimirLinea(l6);
 
-    linea lineas[6] = {l1,l2,l4,l4a,l5,l6};
-    insertarCombinaciones(lineas);
-    
+    /* Prueba buscar combinacion entre lineas 1 y 2 */
+
+    generarTodasCombinaciones(&l1,&l2,&l4,&l4a,&l5,&l6);
+
+
+
+    /* Ver por pantalla */
+    cout << "\nL1: \n" << endl;
+    imprimirLinea(l1);
+
+    cout << "\nL2: \n" << endl;
+    imprimirLinea(l2);
+
     cout << "\nL4: \n" << endl;
     imprimirLinea(l4);
-    
+
     cout << "\nL4a: \n" << endl;
     imprimirLinea(l4a);
-    
+
     cout << "\nL5: \n" << endl;
     imprimirLinea(l5);
-    
+
     cout << "\nL6: \n\n" << endl;
     imprimirLinea(l6);
-    
+
+
     return 0;
 }
 

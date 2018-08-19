@@ -2,11 +2,6 @@
 
 #include "funciones.h"
 
-
-void insertarCombinaciones(linea lx[]){
-
-}
-
 /**
  * Funcion encargada de recorrer la linea X, con la direccion/sentido por parámetro
  * @param lx Linea a recorrer
@@ -167,6 +162,13 @@ void buscarCombinaciones(linea *lx, linea *ln) {
 }
 
 
-void generarTodasCombinaciones(linea *l1, linea *l2, linea *l3, linea *l4, linea *l4a, linea *l5, linea *l6) {
-    
+void generarTodasCombinaciones(linea *l1, linea *l2, linea *l4, linea *l4a, linea *l5, linea *l6) {
+    linea metroRed[6] = { *l1, *l2, *l4, *l4a, *l5, *l6 };
+    for ( int i = 0; i < 6; i++ ) {
+        int combinacion = 0;
+        if(i!=combinacion){
+            buscarCombinaciones(&metroRed[combinacion],&metroRed[i]);
+        }
+        combinacion++;
+    }
 }
