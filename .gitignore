@@ -6,3 +6,5 @@ programa
 funciones.o
 
 *.xml
+
+*.o
