@@ -20,6 +20,7 @@ typedef struct nodo {
 typedef nodo*linea;
 
 void cargarLinea(char* fichero, linea *lx);
+void imprimirLinea(linea lx);
 
 void recorrerLinea(linea lx, std::string sentido);
 
