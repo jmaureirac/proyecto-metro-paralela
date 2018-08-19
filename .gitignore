@@ -4,3 +4,19 @@ a.out
 programa
 
 funciones.o
+
+funciones\.h
+
+funciones\.cpp
+
+\.idea/codeStyles/codeStyleConfig\.xml
+
+\.idea/codeStyles/Project\.xml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/proyecto-metro-paralela\.iml
+
+\.idea/workspace\.xml
