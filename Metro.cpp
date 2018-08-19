@@ -25,31 +25,33 @@ Metro::Metro(const char* fichero){
     } else {
         while(!archivo.eof())
         {
+            Estacion *estacion;
+            estacion = new Estacion;
             archivo.getline(line, sizeof(line));
             std::string lineaArchivo = line;
             int largoLinea = lineaArchivo.length();
-//            std::cout<<lineaArchivo<<endl;
             bool cambio_linea = largoLinea == 2 || (largoLinea==3 && lineaArchivo[2]=='a');
-            this->estaciones;
+
             if (cambio_linea){
+
+                estacion->id = contador;
+                estacion->codigo = lineaArchivo.substr(0,3);
+//                estacion->nombre = lineaArchivo.substr(4,largoLinea-4);
+                estacion->der = NULL;
+
+                if(this->estaciones == NULL){
+                    std::cout<<"PICO"<<endl;
+                    this->estaciones = estacion;
+                    estacion->izq = NULL;
+                } else {
+                    estacion->izq = this->estaciones;
+                    this->estaciones->der = estacion;
+                }
                 std::cout<<lineaArchivo<<endl;
+
+
             }
-//            linea nuevaEstacion;
-//            nuevaEstacion = (linea) malloc(sizeof(nodo));
-//
-//            if ( line[2] != ' ' ) {
-//                /* SIGLA DE LARGO 3 */
-//                std::cout << "hola" << std::endl;
-//            } else {
-//                /* SIGLA DE LARGO 2 */
-//                nuevaEstacion->id = 0;
-//                nuevaEstacion->codigo = lineaArchivo.substr(0,2);
-//                nuevaEstacion->nombre = lineaArchivo.substr(3,largoLinea-1);
-//
-//                //std::cout << "id: " << nuevaEstacion->id << "\tcod: " << nuevaEstacion->codigo << "\t   nombre: " << nuevaEstacion->nombre << std::endl;
-
-//            }
-
+            this->estaciones = this->estaciones->der;
             contador++;
 
         }

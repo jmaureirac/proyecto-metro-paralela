@@ -30,7 +30,7 @@ class Metro {
 
     private:
         int id;
-        Estacion* estaciones;
+        Estacion* estaciones = NULL;
 };
 
 #endif /* METRO_H */
