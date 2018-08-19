@@ -81,6 +81,18 @@ int main(int argc, char** argv) {
     linea lineas[6] = {l1,l2,l4,l4a,l5,l6};
     insertarCombinaciones(lineas);
     
+    cout << "\nL4: \n" << endl;
+    imprimirLinea(l4);
+    
+    cout << "\nL4a: \n" << endl;
+    imprimirLinea(l4a);
+    
+    cout << "\nL5: \n" << endl;
+    imprimirLinea(l5);
+    
+    cout << "\nL6: \n\n" << endl;
+    imprimirLinea(l6);
+    
     return 0;
 }
 

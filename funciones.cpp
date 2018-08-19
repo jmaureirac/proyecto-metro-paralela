@@ -57,6 +57,7 @@ void cargarLinea(char* fichero, linea *lx){
             nuevaEstacion->codigo = ( lineaArchivo[2] != ' ' ) ? lineaArchivo.substr(0,3) : lineaArchivo.substr(0,2);
             nuevaEstacion->nombre = ( lineaArchivo[2] != ' ' ) ? lineaArchivo.substr(4, largoLinea-4) : lineaArchivo.substr(3, largoLinea-3);
             
+            nuevaEstacion->combinacion = NULL;
             nuevaEstacion->der = NULL;
             
             if (L == NULL) {
@@ -87,6 +88,14 @@ void imprimirLinea(linea lx) {
     
     while(L != NULL) {
         std::cout << "id: " << L->id << "\tcod: " << L->codigo << "\t nombre: " << L->nombre;
+        
+        /* verificar si hay nodo estacion para evitar core */
+        if (L->combinacion != NULL) {
+            std::cout << "\t\tCombinacion: " << L->combinacion->codigo;
+        } else {
+            std::cout << "\t\tNo hay combinacion";
+        }
+        
         /* verificar si existe nodo izquierdo para evitar core */
         if (L->izq != NULL) {
             std::cout << "\t\t\tAnterior: " << L->izq->nombre;
@@ -100,7 +109,11 @@ void imprimirLinea(linea lx) {
         } else {
             std::cout << "\t\t\tEs la ultima estacion" << std::endl;
         }
+        
+        
+        
         L = L->der;
+        
     }
 
 }
@@ -119,5 +132,41 @@ void cleanLinea(linea *lx) {
     *lx = primeraEstacion;
     
     free(borrar);
+    
+}
+
+
+/**
+ * Funcion que busca las combinaciones existentes entre dos lineas
+ * @param lx Linea x
+ * @param ln Linea n
+ */
+void buscarCombinaciones(linea *lx, linea *ln) {
+    linea aux = *lx;
+    
+    /* Buscar en Linea X para cada estación */
+    while( aux != NULL ) {
+        
+        /* Buscar en Linea N para cada estación */
+        linea search = *ln;
+        
+        while( search != NULL ) {
+            
+            if ( aux->nombre == search->nombre ) {
+                /* Asignacion de valores a ambas estaciones con codigos de la otra linea */
+                aux->combinacion = search;
+                search->combinacion = aux;
+            }
+            
+            search = search->der;
+        }
+        
+        aux = aux->der;
+    }
+    
+}
+
+
+void generarTodasCombinaciones(linea *l1, linea *l2, linea *l3, linea *l4, linea *l4a, linea *l5, linea *l6) {
     
 }
