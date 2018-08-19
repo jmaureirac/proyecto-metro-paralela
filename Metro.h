@@ -22,7 +22,7 @@ class Metro {
 
     public:
         Metro();
-        Metro(char* fichero);
+        Metro(const char* fichero);
         virtual ~Metro();
         void setEstaciones();
         //void setEstaciones();
@@ -30,7 +30,7 @@ class Metro {
 
     private:
         int id;
-        typedef Estacion* estaciones;
+        Estacion* estaciones;
 };
 
 #endif /* METRO_H */

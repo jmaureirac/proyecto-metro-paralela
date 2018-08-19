@@ -3,19 +3,20 @@
 //
 
 #include "Metro.h"
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
 
 Metro::Metro() {}
 
-Metro::Metro(char* fichero){
-
-    std::ifstream archivo(fichero);
+Metro::Metro(const char* fichero){
+    std::cout<<fichero<<endl;
+    std::ifstream archivo("./public/lineas_metro.txt");
     char line[35];
     int contador = 0;
 
@@ -27,10 +28,15 @@ Metro::Metro(char* fichero){
             archivo.getline(line, sizeof(line));
             std::string lineaArchivo = line;
             int largoLinea = lineaArchivo.length();
-            std::cout<<lineaArchivo<<endl;
+//            std::cout<<lineaArchivo<<endl;
+            bool cambio_linea = largoLinea == 2 || (largoLinea==3 && lineaArchivo[2]=='a');
+            this->estaciones;
+            if (cambio_linea){
+                std::cout<<lineaArchivo<<endl;
+            }
 //            linea nuevaEstacion;
 //            nuevaEstacion = (linea) malloc(sizeof(nodo));
-
+//
 //            if ( line[2] != ' ' ) {
 //                /* SIGLA DE LARGO 3 */
 //                std::cout << "hola" << std::endl;
@@ -41,7 +47,7 @@ Metro::Metro(char* fichero){
 //                nuevaEstacion->nombre = lineaArchivo.substr(3,largoLinea-1);
 //
 //                //std::cout << "id: " << nuevaEstacion->id << "\tcod: " << nuevaEstacion->codigo << "\t   nombre: " << nuevaEstacion->nombre << std::endl;
-//
+
 //            }
 
             contador++;

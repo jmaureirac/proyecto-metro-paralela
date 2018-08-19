@@ -73,7 +73,7 @@ HSR Hospital Sótero del Rio
 LME Las Mercedes
 PIN Protectora de la Infancia
 PPA Plaza de Puente Alto
-L4a:
+L4a
 VIM Vicuña Mackenna
 SJU Santa Julia
 LGR La Granja
