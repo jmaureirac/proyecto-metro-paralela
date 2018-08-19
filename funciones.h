@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 typedef std::string array[2];
 
@@ -17,6 +18,8 @@ typedef struct nodo {
 }nodo;
 
 typedef nodo*linea;
+
+void cargarLinea(char* fichero, linea *lx);
 
 void recorrerLinea(linea lx, std::string sentido);
 
