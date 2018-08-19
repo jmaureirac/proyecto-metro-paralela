@@ -16,7 +16,7 @@ Metro::Metro() {}
 
 Metro::Metro(const char* fichero){
     std::cout<<fichero<<endl;
-    std::ifstream archivo("./public/lineas_metro.txt");
+    std::ifstream archivo(fichero);
     char line[35];
     int contador = 0;
 
