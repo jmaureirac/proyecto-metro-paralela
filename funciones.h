@@ -11,9 +11,11 @@ typedef struct nodo {
     int id;
     std::string codigo;
     std::string nombre;
+    std::string linea;
     struct nodo*izq;
     struct nodo*der;
     struct nodo*combinacion;
+
 }nodo;
 
 typedef nodo*linea;
@@ -25,6 +27,8 @@ void buscarCombinaciones(linea* lx, linea* ln);
 void generarTodasCombinaciones(linea *l1, linea *l2, linea *l4, linea *l4a, linea *l5, linea *l6);
 
 void recorrerLinea(linea lx, std::string sentido);
+
+void imprimirLineasMetro();
 
 #endif /* FUNCIONES_H */
 

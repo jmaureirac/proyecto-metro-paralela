@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char** argv) {
     /* Se declaran lineas del metro como listas lineales con dos punteros */
     linea l1, l2, l4, l4a, l5, l6;
-    
+
     /* Se declaran los nombres de los textos para abrir archivos */
     char* tl1 = NULL;
     char* tl2 = NULL;
@@ -19,22 +19,22 @@ int main(int argc, char** argv) {
     char* tl4a = NULL;
     char* tl5 = NULL;
     char* tl6 = NULL;
-    
+
     /* Asignaciones de memoria */
     l1 = (linea) malloc(sizeof (nodo));
-    l2 = (linea) malloc(sizeof (nodo));    
-    l4 = (linea) malloc(sizeof (nodo));    
-    l4a = (linea) malloc(sizeof (nodo));    
-    l5 = (linea) malloc(sizeof (nodo));    
-    l6 = (linea) malloc(sizeof (nodo));   
-    
+    l2 = (linea) malloc(sizeof (nodo));
+    l4 = (linea) malloc(sizeof (nodo));
+    l4a = (linea) malloc(sizeof (nodo));
+    l5 = (linea) malloc(sizeof (nodo));
+    l6 = (linea) malloc(sizeof (nodo));
+
     tl1 = (char *) calloc(20, sizeof (char));
-    tl2 = (char *) calloc(20, sizeof (char));    
-    tl4 = (char *) calloc(20, sizeof (char));    
-    tl4a = (char *) calloc(20, sizeof (char));    
-    tl5 = (char *) calloc(20, sizeof (char));    
-    tl6 = (char *) calloc(20, sizeof (char));  
-    
+    tl2 = (char *) calloc(20, sizeof (char));
+    tl4 = (char *) calloc(20, sizeof (char));
+    tl4a = (char *) calloc(20, sizeof (char));
+    tl5 = (char *) calloc(20, sizeof (char));
+    tl6 = (char *) calloc(20, sizeof (char));
+
     /* Setear el path de los ficheros */
     snprintf(tl1, 20, "./public/L1.txt");
     snprintf(tl2, 20, "./public/L2.txt");
