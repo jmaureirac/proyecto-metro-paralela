@@ -3,11 +3,11 @@ CXXFLAGS = -g3 -Wall
 
 LIBS=-lm
 
-funciones.o: clean funciones.cpp funciones.h
-	$(CXX) $(CXXFLAGS) -c funciones.cpp
+Metro.o: clean Metro.cpp Metro.h
+	$(CXX) $(CXXFLAGS) -c Metro.cpp
 
-all: funciones.o
-	$(CXX) $(CXXFLAGS) -o programa main.cpp funciones.o
+all: Metro.o
+	$(CXX) $(CXXFLAGS) -o programa main.cpp Metro.o
 
 clean:
 	rm -fr *.o a.out programa
