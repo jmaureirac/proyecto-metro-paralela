@@ -12,9 +12,9 @@ typedef struct nodo {
     int id;
     std::string codigo;
     std::string nombre;
+    std::string combinacion;
     struct nodo*izq;
     struct nodo*der;
-    array combinacion;
 }nodo;
 
 typedef nodo*linea;

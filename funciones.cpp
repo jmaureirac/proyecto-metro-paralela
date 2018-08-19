@@ -47,40 +47,23 @@ void cargarLinea(char* fichero, linea *lx){
             
             linea nuevaEstacion;
             nuevaEstacion = (linea) malloc(sizeof(nodo));
-                      
-            if ( lineaArchivo[2] != ' ' ) {
-                /* SIGLA DE LARGO 3 */
-                nuevaEstacion->id = contador;
-                nuevaEstacion->codigo = lineaArchivo.substr(0,3);
-                nuevaEstacion->nombre = lineaArchivo.substr(4,largoLinea-4);
-                nuevaEstacion->der = NULL;
-                if (L == NULL) {
-                    /* SI LA LISTA VIENE VACIA, NUEVA ESTACION ES EL PRIMER NODO */
-                    L = nuevaEstacion;
-                    nuevaEstacion->izq = NULL;
-                } else {
-                    /* LINKEA LA LISTA QUE VIENE RECORRIENDO, A LA NUEVA ESTACION */
-                    nuevaEstacion->izq = L;
-                    L->der = nuevaEstacion;                
-                }
             
+            nuevaEstacion->id = contador;
+            /* SIGLA DE LARGO 3 TRUE, LARGO 2 FALSE */
+            nuevaEstacion->codigo = ( lineaArchivo[2] != ' ' ) ? lineaArchivo.substr(0,3) : lineaArchivo.substr(0,2);
+            nuevaEstacion->nombre = ( lineaArchivo[2] != ' ' ) ? lineaArchivo.substr(4, largoLinea-4) : lineaArchivo.substr(3, largoLinea-3);
+            
+            nuevaEstacion->der = NULL;
+            
+            if (L == NULL) {
+                /* SI LA LISTA VIENE VACIA, NUEVA ESTACION ES EL PRIMER NODO */
+                L = nuevaEstacion;
+                nuevaEstacion->izq = NULL;
             } else {
-                /* SIGLA DE LARGO 2 */
-                nuevaEstacion->id = contador;
-                nuevaEstacion->codigo = lineaArchivo.substr(0,2);
-                nuevaEstacion->nombre = lineaArchivo.substr(3,largoLinea-3);
-                nuevaEstacion->der = NULL;
-                if (L == NULL) {
-                    /* SI LA LISTA VIENE VACIA, NUEVA ESTACION ES EL PRIMER NODO */
-                    L = nuevaEstacion;
-                    nuevaEstacion->izq = NULL;
-                } else {
-                    /* LINKEA LA LISTA QUE VIENE RECORRIENDO, A LA NUEVA ESTACION */
-                    nuevaEstacion->izq = L;
-                    L->der = nuevaEstacion;                
-                }
-            }
-            
+                /* LINKEA LA LISTA QUE VIENE RECORRIENDO, A LA NUEVA ESTACION */
+                nuevaEstacion->izq = L;
+                L->der = nuevaEstacion;                
+            }        
             L = L->der; 
             contador++;
             
@@ -89,7 +72,6 @@ void cargarLinea(char* fichero, linea *lx){
     archivo.close();
     
 }
-
 
 /**
  * Funcion que imprime los datos de cada estacion de una linea por parametro
