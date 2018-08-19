@@ -59,6 +59,10 @@ int main(int argc, char** argv) {
     cleanLinea(&l5);
     cleanLinea(&l6);
     
+    /* Prueba buscar combinacion entre lineas 1 y 2 */
+    buscarCombinaciones(&l1, &l2);
+    
+    
     /* Ver por pantalla */
     cout << "\nL1: \n" << endl;
     imprimirLinea(l1);
@@ -77,6 +81,10 @@ int main(int argc, char** argv) {
     
     cout << "\nL6: \n\n" << endl;
     imprimirLinea(l6);
+    
+    
+    
+    
     
     return 0;
 }

@@ -6,15 +6,14 @@
 #include <iostream>
 #include <fstream>
 
-typedef std::string array[2];
 
 typedef struct nodo {
     int id;
     std::string codigo;
     std::string nombre;
-    std::string combinacion;
     struct nodo*izq;
     struct nodo*der;
+    struct nodo*combinacion;
 }nodo;
 
 typedef nodo*linea;
@@ -22,7 +21,8 @@ typedef nodo*linea;
 void cargarLinea(char* fichero, linea *lx);
 void cleanLinea(linea *lx);
 void imprimirLinea(linea lx);
-
+void buscarCombinaciones(linea* lx, linea* ln);
+void generarTodasCombinaciones(linea *l1, linea *l2, linea *l3, linea *l4, linea *l4a, linea *l5, linea *l6);
 
 void recorrerLinea(linea lx, std::string sentido);
 
