@@ -161,14 +161,25 @@ void buscarCombinaciones(linea *lx, linea *ln) {
     
 }
 
-
+/**
+* Funcion que recibe todas las lineas del metro y comprueba si tiene combinacion con las demás para generar los link
+* @param l1 Linea 1
+* @param l2 Linea 2
+* @param l4 Linea 4
+* @param l4a Linea 4a
+* @param l5 Linea 5
+* @param l6 Linea 6
+*/
 void generarTodasCombinaciones(linea *l1, linea *l2, linea *l4, linea *l4a, linea *l5, linea *l6) {
     linea metroRed[6] = { *l1, *l2, *l4, *l4a, *l5, *l6 };
-    for ( int i = 0; i < 6; i++ ) {
-        int combinacion = 0;
-        if(i!=combinacion){
-            buscarCombinaciones(&metroRed[combinacion],&metroRed[i]);
+
+
+    for(int i = 0; i<6; i++) {
+        for(int j = 0; j<6; j++) {
+            if ( i != j ) {
+                buscarCombinaciones(&metroRed[i], &metroRed[j]);
+            }
         }
-        combinacion++;
     }
+
 }
