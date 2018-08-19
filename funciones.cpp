@@ -3,6 +3,10 @@
 #include "funciones.h"
 
 
+void insertarCombinaciones(linea lx[]){
+
+}
+
 /**
  * Funcion encargada de recorrer la linea X, con la direccion/sentido por parámetro
  * @param lx Linea a recorrer
