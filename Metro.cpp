@@ -20,6 +20,8 @@ Metro::Metro(const char* fichero){
     char line[35];
     int contador = 0;
 
+
+
     if(archivo.fail()) {
         std::cerr << "Error al abrir el archivo " << fichero << std::endl;
     } else {
@@ -27,30 +29,26 @@ Metro::Metro(const char* fichero){
         {
             Estacion *estacion;
             estacion = new Estacion;
+
             archivo.getline(line, sizeof(line));
             std::string lineaArchivo = line;
             int largoLinea = lineaArchivo.length();
             bool cambio_linea = largoLinea == 2 || (largoLinea==3 && lineaArchivo[2]=='a');
 
-            if (cambio_linea){
+            estacion->id = contador;
+            estacion->codigo = (lineaArchivo[2] != ' ') ? lineaArchivo.substr(0,3): lineaArchivo.substr(0,2);
+            estacion->nombre = (lineaArchivo[2] != ' ') ? lineaArchivo.substr(4,largoLinea-4) : lineaArchivo.substr(3,largoLinea-3);
+            estacion->der = NULL;
 
-                estacion->id = contador;
-                estacion->codigo = lineaArchivo.substr(0,3);
-//                estacion->nombre = lineaArchivo.substr(4,largoLinea-4);
-                estacion->der = NULL;
-
-                if(this->estaciones == NULL){
-                    std::cout<<"PICO"<<endl;
-                    this->estaciones = estacion;
-                    estacion->izq = NULL;
-                } else {
-                    estacion->izq = this->estaciones;
-                    this->estaciones->der = estacion;
-                }
-                std::cout<<lineaArchivo<<endl;
-
-
+            if(this->estaciones == NULL){
+                this->estaciones = estacion;
+                estacion->izq = NULL;
+            } else {
+                estacion->izq = this->estaciones;
+                this->estaciones->der = estacion;
             }
+            std::cout<<lineaArchivo[3]<<endl;
+
             this->estaciones = this->estaciones->der;
             contador++;
 
