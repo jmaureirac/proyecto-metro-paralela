@@ -75,23 +75,23 @@ int main(int argc, char** argv) {
 
 
                 /* Ver por pantalla */
-                // cout << "\nL1: \n" << endl;
-                // imprimirLinea(l1);
-                //
-                // cout << "\nL2: \n" << endl;
-                // imprimirLinea(l2);
-                //
-                // cout << "\nL4: \n" << endl;
-                // imprimirLinea(l4);
-                //
-                // cout << "\nL4a: \n" << endl;
-                // imprimirLinea(l4a);
-                //
-                // cout << "\nL5: \n" << endl;
-                // imprimirLinea(l5);
-                //
-                // cout << "\nL6: \n\n" << endl;
-                // imprimirLinea(l6);
+                cout << "\nL1: \n" << endl;
+                imprimirLinea(l1);
+
+                cout << "\nL2: \n" << endl;
+                imprimirLinea(l2);
+
+                cout << "\nL4: \n" << endl;
+                imprimirLinea(l4);
+
+                cout << "\nL4a: \n" << endl;
+                imprimirLinea(l4a);
+
+                cout << "\nL5: \n" << endl;
+                imprimirLinea(l5);
+
+                cout << "\nL6: \n\n" << endl;
+                imprimirLinea(l6);
 
                 linea estacion_inicial = (linea) malloc(sizeof (nodo));
                 linea estacion_destino = (linea) malloc(sizeof (nodo));
