@@ -220,6 +220,8 @@ void generarTodasCombinaciones(linea *l1, linea *l2, linea *l4, linea *l4a, line
 //   return false;
 // }
 
+
+/***/
 void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea l4, linea l4a, linea l5, linea l6, linea *stack_rutas){
     linea metroRed[6] = { l1, l2, l4, l4a, l5, l6 };
     linea estacion_inicial;
@@ -239,7 +241,15 @@ void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea
 
     }
 }
-// Aplicare cambios para guardar la ruta hazta llegar
+
+
+/**
+ * 
+ * @param lx
+ * @param destino
+ * @param sentido
+ * @return 
+ */
 std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido) {
     linea estacion;
     estacion = lx;
@@ -258,6 +268,13 @@ std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido) {
     return _stack_ruta;
 }
 
+
+/**
+ * 
+ * @param inicio
+ * @param destino
+ * @return 
+ */
 bool destinoEnLinea(linea inicio, linea destino){
   if (inicio->nombre_linea == destino->nombre_linea){
     return true;
@@ -265,6 +282,13 @@ bool destinoEnLinea(linea inicio, linea destino){
   return false;
 }
 
+
+/**
+ * 
+ * @param inicio
+ * @param destino
+ * @return 
+ */
 std::string buscarDireccion(linea inicio, linea destino){
   if(inicio->id > destino->id){
     return "izq";
