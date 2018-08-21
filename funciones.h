@@ -31,7 +31,7 @@ void recorrerLinea(linea lx, std::string sentido);
 
 // LUCAS
 void busquedaRutaMasCorta(linea incio, linea destino, linea l1, linea l2, linea l4, linea l4a, linea l5, linea l6, linea *stack_rutas);
-linea recorrerLinea_v2(linea lx, linea destino, std::string sentido);
+std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido);
 bool destinoEnLinea(linea inicio, linea destino);
 std::string buscarDireccion(linea incio, linea destino);
 

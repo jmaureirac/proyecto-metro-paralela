@@ -226,7 +226,7 @@ void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea
     linea estacion_destino;
     estacion_inicial = inicio;
     estacion_destino = destino;
-    linea ruta = (linea) malloc(sizeof(nodo));
+    std::string ruta;
 
     if (estacion_inicial->nombre == estacion_destino->nombre ) {
       // stack_rutas.push(ruta);
@@ -243,7 +243,7 @@ void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea
 std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido) {
     linea estacion;
     estacion = lx;
-    linea _stack_ruta;
+    std::string _stack_ruta;
     while ( estacion->nombre != destino->nombre ) {
         // std::cout << estacion->codigo << std::endl;
         if (sentido.compare("der") == 0) {
@@ -255,6 +255,7 @@ std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido) {
         }
     }
     std::cout << estacion->nombre << std::endl;
+    return _stack_ruta;
 }
 
 bool destinoEnLinea(linea inicio, linea destino){
