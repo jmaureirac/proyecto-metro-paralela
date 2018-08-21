@@ -24,7 +24,6 @@ void recorrerLinea(linea lx, std::string sentido) {
     }
 }
 
-
 /**
  * Funcion que carga una linea desde un fichero a una lista
  * @param fichero "./public/Lx.txt"
@@ -164,6 +163,17 @@ void buscarCombinaciones(linea *lx, linea *ln) {
 }
 
 
+/**
+ * Funcion que recibe la estacion del argumento del programa y determina ubicacion en la linea de la estacion
+ * @param estacion String argumento recibido
+ * @param l1 Linea 1
+ * @param l2 Linea 2
+ * @param l4 Linea 4
+ * @param l4a Linea 4a
+ * @param l5 Linea 5
+ * @param l6 Linea 6
+ * @return Retorna la estacion en forma de linea(lista) donde se tienen todos los campos necesarios
+ */
 linea getUbicacion(char* estacion, linea l1, linea l2, linea l4, linea l4a, linea l5, linea l6) {
     linea metroRed[6] = { l1, l2, l4, l4a, l5, l6 };
 
@@ -177,11 +187,6 @@ linea getUbicacion(char* estacion, linea l1, linea l2, linea l4, linea l4a, line
         }
     }
 }
-
-
-
-
-
 
 
 /**
@@ -204,31 +209,27 @@ void generarTodasCombinaciones(linea *l1, linea *l2, linea *l4, linea *l4a, line
     }
 }
 
-// bool estaDestinoEnCombinacion(linea current, linea combinacion, char){
-//   linea left, right;
-//   left, right = current;
-//   while (left != NULL || right != NULL) {
-//     if (left->nombre == destino) {
-//       return true;
-//     }
-//     if (right->nombre == destino){
-//       return true;
-//     }
-//     left = (left != NULL) ? left->izq;
-//     right = (right != NULL) ? right->der;
-//   }
-//   return false;
-// }
 
+/**
+ * Funcion de busqueda de ruta mas corta recibiendo inicio y destino en formato de linea
+ * @param inicio 
+ * @param destino 
+ * @param l1 Linea 1
+ * @param l2 Linea 2
+ * @param l4 Linea 4
+ * @param l4a Linea 4a
+ * @param l5 Linea 5
+ * @param l6 Linea 6
+ * @param stack_rutas 
+ */
 
-/***/
-void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea l4, linea l4a, linea l5, linea l6, linea *stack_rutas){
+/*void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea l4, linea l4a, linea l5, linea l6, linea *stack_rutas){
     linea metroRed[6] = { l1, l2, l4, l4a, l5, l6 };
     linea estacion_inicial;
     linea estacion_destino;
     estacion_inicial = inicio;
     estacion_destino = destino;
-    std::string ruta;
+   //std::string ruta;
 
     if (estacion_inicial->nombre == estacion_destino->nombre ) {
       // stack_rutas.push(ruta);
@@ -236,12 +237,81 @@ void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea
     if (destinoEnLinea(inicio, destino)){
         std::cout<<"SE ENCUENTRA DESTINO EN LINEA"<<std::endl;
         std::string direccion = buscarDireccion(inicio, destino);
-        ruta = recorrerLinea_v2(inicio, destino, direccion);
-
+        recorrido ruta;
+        recorrerLinea_v2(inicio, destino, direccion, &ruta);
 
     }
+}*/
+
+
+void rutaMasCorta(linea inicio, linea destino, recorrido *ruta_corta) {
+    linea viajero = inicio;
+    
+    if ( destinoEnLinea(inicio, destino) ) {
+        if ( inicio->id > destino->id ) {
+            *ruta_corta = recorrerLinea_v2(inicio, destino, "izq");
+        } else {
+            *ruta_corta = recorrerLinea_v2(inicio, destino, "der");
+        }
+    } else {
+        /* casi :( */
+    }
+    recorrido aux = *ruta_corta;
+    while(aux != NULL) {
+        std::cout << aux->estacion->nombre << std::endl;
+        aux = aux->link;
+    }
+    
 }
 
+/*error fatal*/
+/*recorrido combinacionesLineaX(linea lx) {
+    recorrido combinaciones = (recorrido) malloc(sizeof(ruta));
+    recorrido aux = combinaciones;
+    
+    linea left = lx;
+    linea right = lx;
+    while ( left != NULL ) {
+        if( left->combinacion != NULL ) {
+            recorrido append = (recorrido) malloc(sizeof(ruta));
+            append->estacion = left;
+            append->link = NULL;
+            
+            if( aux != NULL ) {
+                aux->link = append;
+            } else {
+                aux = append;
+            }
+            aux = aux->link;
+        } 
+        left->izq;        
+    }
+    while ( right != NULL ) {
+        if( right->combinacion != NULL ) {
+            recorrido append = (recorrido) malloc(sizeof(ruta));
+            append->estacion = right;
+            append->link = NULL;
+            
+            if( aux != NULL ) {
+                aux->link = append;
+            } else {
+                aux = append;
+            }
+            aux = aux->link;
+        } 
+        right->izq;        
+    }
+    
+    recorrido weaita = (recorrido) malloc(sizeof(ruta));
+    while(weaita != NULL) {
+        std::cout << weaita->estacion->nombre << std::endl;
+        weaita = weaita->link;
+    }
+    
+    return combinaciones;
+    
+}
+*/
 
 /**
  * 
@@ -250,22 +320,32 @@ void busquedaRutaMasCorta(linea inicio, linea destino, linea l1, linea l2, linea
  * @param sentido
  * @return 
  */
-std::string recorrerLinea_v2(linea lx, linea destino, std::string sentido) {
-    linea estacion;
-    estacion = lx;
-    std::string _stack_ruta;
-    while ( estacion->nombre != destino->nombre ) {
+recorrido recorrerLinea_v2(linea inicio, linea destino, std::string sentido) {
+    linea aux;
+    aux = inicio;
+    
+    recorrido inicio_destino = (recorrido) malloc(sizeof(ruta));
+    recorrido main = inicio_destino;
+    main->estacion = aux;
+    main->link = NULL;
+    while ( aux->nombre != destino->nombre ) {
         // std::cout << estacion->codigo << std::endl;
+        recorrido append = (recorrido) malloc(sizeof(ruta));
         if (sentido.compare("der") == 0) {
-            std::cout << estacion->nombre << "  -  ";
-            estacion = estacion->der;
+            //std::cout << estacion->nombre << "  -  ";
+            aux = aux->der;           
         } else {
-            std::cout << estacion->nombre << "  -  ";
-            estacion = estacion->izq;
+            //std::cout << estacion->nombre << "  -  ";
+            aux = aux->izq;        
         }
+        append->estacion = aux;
+        append->link = NULL;
+        
+        main->link = append;
+        main = main->link;
     }
-    std::cout << estacion->nombre << std::endl;
-    return _stack_ruta;
+    return inicio_destino;
+    //std::cout << estacion->nombre << std::endl;
 }
 
 
@@ -296,3 +376,5 @@ std::string buscarDireccion(linea inicio, linea destino){
     return "der";
   }
 }
+
+
