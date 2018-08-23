@@ -5,18 +5,8 @@ programa
 
 funciones.o
 
-funciones\.h
+*.xml
 
-funciones\.cpp
+*.o
 
-\.idea/codeStyles/codeStyleConfig\.xml
-
-\.idea/codeStyles/Project\.xml
-
-\.idea/misc\.xml
-
-\.idea/modules\.xml
-
-\.idea/proyecto-metro-paralela\.iml
-
-\.idea/workspace\.xml
+.idea
