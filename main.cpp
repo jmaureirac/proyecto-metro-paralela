@@ -41,6 +41,15 @@ int main(int argc, char** argv) {
 
             cout << "Estación de inicio  : " << inicio->nombre << endl;
             cout << "Estación destino    : " << destino->nombre << endl;
+//            cout << "\n" << destino->combinacion->der->codigo << endl;
+//            cout << "\n" << destino->combinacion->der->der->codigo << endl;
+//            cout << "\n" << destino->combinacion->der->der->der->codigo << endl;
+//            cout << "\n" << destino->combinacion->der->der->der->der->codigo << endl;
+            
+//            cout << buscarDireccion(inicio, destino) << endl;
+            
+            cout << endl;
+            testingRecorrerLinea(inicio, destino);
             
 //            cout << calcularDistanciaMismaLinea(inicio, destino) << endl;
 //            

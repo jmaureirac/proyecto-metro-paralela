@@ -206,12 +206,12 @@ void generarLineasMetro(linea *l1, linea *l2, linea *l4, linea *l4a, linea *l5, 
     generarTodasCombinaciones(l1,l2,l4,l4a,l5,l6);
 
     /* Ver por pantalla */
-    /*
-    imprimirLinea(*l1);
-    imprimirLinea(*l2);
-    imprimirLinea(*l4);
-    imprimirLinea(*l4a);
-    imprimirLinea(*l5);
-    imprimirLinea(*l6);*/
+    
+//    imprimirLinea(*l1);
+//    imprimirLinea(*l2);
+//    imprimirLinea(*l4);
+//    imprimirLinea(*l4a);
+//    imprimirLinea(*l5);
+//    imprimirLinea(*l6);
 
 }

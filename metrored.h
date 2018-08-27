@@ -14,6 +14,11 @@
 
     typedef ruta*recorrido;
     
+    void agregarLineaRecorrido(recorrido *p_ruta, linea p_estacion);
+    void mostrarRecorrido(recorrido p_ruta);
+    void testingRecorrerLinea(linea inicio, linea destino);
+    linea pop(recorrido *combinaciones);
+    int largoRecorrido(recorrido p_ruta);
     
     /**
     * Funcion que valida si existe destino en la misma linea consultada
@@ -63,7 +68,7 @@
      * @param lx Linea a recorrer
      * @param sentido Sentido/Direccion a moverse por la linea
      */
-    void recorrerLinea(linea lx, std::string sentido);
+    void recorrerLinea(linea lx, std::string sentido, linea destino, recorrido *p_ruta);
     
     
     
