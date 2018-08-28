@@ -17,7 +17,7 @@
     void agregarLineaRecorrido(recorrido *p_ruta, linea p_estacion);
     void mostrarRecorrido(recorrido p_ruta);
     void testingRecorrerLinea(linea inicio, linea destino);
-    linea pop(recorrido *combinaciones);
+    void pop(recorrido *combinaciones);
     int largoRecorrido(recorrido p_ruta);
     
     /**
@@ -64,9 +64,12 @@
     void hacerCombinacion(linea *lx);
    
     /**
-     * Funcion encargada de recorrer la linea X, con la direccion/sentido por parámetro
+     * Funcion encargada de recorrer la linea X, con la direccion/sentido por parámetro hacia destino 
+     * y depositar toda la ruta en la lista p_ruta de tipo recorrido
      * @param lx Linea a recorrer
      * @param sentido Sentido/Direccion a moverse por la linea
+     * @param destino Estacion destino
+     * @param *p_ruta lista de tipo recorrido para generar ruta/camino 
      */
     void recorrerLinea(linea lx, std::string sentido, linea destino, recorrido *p_ruta);
     

@@ -26,16 +26,14 @@ void agregarLineaRecorrido(recorrido *p_ruta, linea p_estacion) {
 }
 
 // DOCUMENTAR
-linea pop(recorrido *combinaciones) {    
+void pop(recorrido *combinaciones) {    
     recorrido aux = *combinaciones;
+    recorrido tmp = *combinaciones;
     
-    if ( aux == NULL ) return NULL;
-    else {
-        recorrido tmp = aux;
+    if ( tmp != NULL ) {
         aux = aux->link;
         *combinaciones = aux;
         free(tmp);
-        return aux->estacion;
     }
     
 }
@@ -113,7 +111,7 @@ void hacerCombinacion(linea *lx) {
     *lx = combinate;
 }
 
-// DOCUMENTAR
+
 void recorrerLinea(linea lx, std::string sentido, linea destino, recorrido *p_ruta) {
     linea estacion;
     estacion = lx;
@@ -181,6 +179,12 @@ void testingRecorrerLinea(linea inicio, linea destino) {
     } else {
         obtenerCombinacionesLinea(&combinaciones, estacion_inicio);
         mostrarRecorrido(combinaciones);
+        
+        recorrido tmp = combinaciones;
+        while(tmp != NULL) {
+            std::cout << "leyendo: " << tmp->estacion->nombre << std::endl;
+            pop(&tmp);
+        }
     }
 
     
