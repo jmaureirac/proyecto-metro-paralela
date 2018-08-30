@@ -139,20 +139,34 @@ void obtenerCombinacionesLinea(recorrido *combinaciones, linea lx) {
     l_right = lx;
     l_left = lx;
     
+    
     while ( l_right != NULL ) {
-        if ( l_right->combinacion ) {
+        if ( l_right->combinacion && !inLista(r_comb, l_right)) {
             agregarLineaRecorrido(&r_comb, l_right);
         }
         l_right = l_right->der;
     }
     while ( l_left != NULL ) {
-        if ( l_left->combinacion) {
+        if ( l_left->combinacion && !inLista(r_comb, l_left)) {
             agregarLineaRecorrido(&r_comb, l_left);
         }
         l_left = l_left->izq;
     }    
     *combinaciones = r_comb;
 }
+
+bool inLista(recorrido combinaciones, linea lx) {
+    recorrido aux = combinaciones;
+    bool state = false;
+    while(aux != NULL) {
+        if ( aux->estacion->nombre == lx->nombre ) {
+            return true;
+        }
+        aux = aux->link;
+    }
+    return state;
+}
+
 
 
 /*                                  FIN INICIO OPERACIONES BASICAS                                                */
@@ -178,13 +192,32 @@ void testingRecorrerLinea(linea inicio, linea destino) {
         mostrarRecorrido(p_ruta);
     } else {
         obtenerCombinacionesLinea(&combinaciones, estacion_inicio);
+        std::cout << "\nCombinaciones :" << combinaciones->estacion->nombre_linea << std::endl ;
         mostrarRecorrido(combinaciones);
         
         recorrido tmp = combinaciones;
         while(tmp != NULL) {
-            std::cout << "leyendo: " << tmp->estacion->nombre << std::endl;
+            
+            /* RECURSIVIDAD */
+            if(destinoEnLinea(tmp->estacion->combinacion, destino)){
+                int largo = calcularDistanciaMismaLinea(inicio, tmp->estacion);
+                std::cout << "\n\tcombinacion a ... " << tmp->estacion->nombre << "\testaciones: "
+                      << largo << std::endl;
+                std::string direccion;
+                direccion = buscarDireccion(tmp->estacion->combinacion, destino);
+                recorrerLinea(tmp->estacion->combinacion, direccion, destino, &p_ruta);
+                mostrarRecorrido(p_ruta);
+                
+            } else {
+                /* codigo */
+            }
+            /* RECURSIVIDAD */
             pop(&tmp);
+
+            
         }
+        
+        
     }
 
     

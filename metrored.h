@@ -19,6 +19,7 @@
     void testingRecorrerLinea(linea inicio, linea destino);
     void pop(recorrido *combinaciones);
     int largoRecorrido(recorrido p_ruta);
+    bool inLista(recorrido combinaciones, linea lx);
     
     /**
     * Funcion que valida si existe destino en la misma linea consultada
