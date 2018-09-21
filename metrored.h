@@ -13,7 +13,14 @@
     }ruta;
 
     typedef ruta*recorrido;
-    
+
+    typedef struct rutas{
+        ruta estaciones;
+        struct rutas*link;
+    }rutas;
+
+    typedef rutas*recorridos;
+
     void agregarLineaRecorrido(recorrido *p_ruta, linea p_estacion);
     void mostrarRecorrido(recorrido p_ruta);
     void testingRecorrerLinea(linea inicio, linea destino);
@@ -21,6 +28,8 @@
     int largoRecorrido(recorrido p_ruta);
     bool inLista(recorrido combinaciones, linea lx);
     
+    void buscarDestinoDesde(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas);
+
     /**
     * Funcion que valida si existe destino en la misma linea consultada
     * @param inicio Estacion inicio
