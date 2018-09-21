@@ -204,15 +204,16 @@ void testingRecorrerLinea(linea inicio, linea destino) {
         recorridos rutas = NULL;
         recorrido tmp = combinaciones;
 
-        // bool iterar = true;
-        // int cont = 1;
-        while(tmp) {
+        bool iterar = true;
+        int cont = 1;
+        while(iterar) {
             buscarDestinoDesde(tmp, destino, &stack_combinaciones, &combinaciones_conocidas, &rutas);
             pop(&tmp);
-            // cont++;  
-            // if(cont > 3){
-            //     iterar = false;
-            // }
+            cont++;  
+            if (tmp == NULL){
+                iterar = false;
+            }
+
         }   
         std::cout << "Combinaciones conocidas: "<<std::endl;
         mostrarRecorrido(combinaciones_conocidas);
