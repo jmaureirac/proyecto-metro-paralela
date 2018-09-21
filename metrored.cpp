@@ -194,10 +194,12 @@ void testingRecorrerLinea(linea inicio, linea destino) {
     } else {
         std::cout << "\nDestino no se encuentra en linea actual"<<std::endl;
         std::cout << "Generando Combinaciones"<<std::endl;
+
         // combinaciones es para empezar a iterar
         obtenerCombinacionesLinea(&combinaciones, estacion_inicio);
         // stack la envio a la funcion 
         obtenerCombinacionesLinea(&stack_combinaciones, estacion_inicio);
+
         std::cout << "\nCombinaciones :" << combinaciones->estacion->nombre_linea << std::endl ;
         mostrarRecorrido(combinaciones);
         recorrido combinaciones_conocidas = NULL;
@@ -207,7 +209,7 @@ void testingRecorrerLinea(linea inicio, linea destino) {
         bool iterar = true;
         int cont = 1;
         while(iterar) {
-            buscarDestinoDesde(tmp, destino, &stack_combinaciones, &combinaciones_conocidas, &rutas);
+            buscarDestinoDesde(&tmp, destino, &stack_combinaciones, &combinaciones_conocidas, &rutas);
             pop(&tmp);
             cont++;  
             if (tmp == NULL){
@@ -217,43 +219,114 @@ void testingRecorrerLinea(linea inicio, linea destino) {
         }   
         std::cout << "Combinaciones conocidas: "<<std::endl;
         mostrarRecorrido(combinaciones_conocidas);
-        // std::cout << "StackCombinaciones: "<<std::endl;
-        // mostrarRecorrido(stack_combinaciones);
+        std::cout << "StackCombinaciones: "<<std::endl;
+        mostrarRecorrido(stack_combinaciones);
+        // if (quedanCombinacionesARecorrer(combinaciones_conocidas)){
+        //  std::cout << "\n FaltanCombinaciones: "<<std::endl;
+        // }
     }
 }
 
-void buscarDestinoDesde(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas ){
+void buscarDestinoDesde(recorrido *inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas ){
     recorrido ruta = NULL;
     recorrido stack_combinaciones_p = *stack_combinaciones;
     recorrido combinaciones_conocidas_p = *combinaciones_conocidas;
     recorrido nuevas_combinaciones = NULL;
-    std::cout << "\nBuscando destino en combinacion: "<< inicio_variable->estacion->combinacion->nombre <<std::endl;
-    // std::cout << "\nCombinaciones Conocidas:"<< combinaciones_conocidas->estacion->nombre <<std::endl;
-    if(destinoEnLinea(inicio_variable->estacion->combinacion, destino)){
-        agregarLineaRecorrido(&combinaciones_conocidas_p, inicio_variable->estacion->combinacion);
-        // agregarLineaRecorrido(&stack_combinaciones_p, inicio_variable->estacion->combinacion);
-        std::cout << "Destino en Linea! -> "<< inicio_variable->estacion->combinacion->nombre <<std::endl;
-        std::cout << "Combinacion a ... " << inicio_variable->estacion->nombre << std::endl;
+    recorrido inicio_v = *inicio_variable;
+    std::cout << "\nBuscando destino en combinacion: "<< inicio_v->estacion->combinacion->nombre <<std::endl;
+    if(destinoEnLinea(inicio_v->estacion->combinacion, destino)){
+        agregarLineaRecorrido(&combinaciones_conocidas_p, inicio_v->estacion->combinacion);
+        std::cout << "Destino en Linea! -> "<< inicio_v->estacion->combinacion->nombre <<std::endl;
+        std::cout << "Combinacion a ... " << inicio_v->estacion->nombre << std::endl;
         std::string direccion;
-        direccion = buscarDireccion(inicio_variable->estacion->combinacion, destino);
-        recorrerLinea(inicio_variable->estacion->combinacion, direccion, destino, &ruta);
+        direccion = buscarDireccion(inicio_v->estacion->combinacion, destino);
+        recorrerLinea(inicio_v->estacion->combinacion, direccion, destino, &ruta);
         mostrarRecorrido(ruta);
     } else {        
-        agregarLineaRecorrido(&combinaciones_conocidas_p, inicio_variable->estacion->combinacion);
-        std::cout << "\nDestino no se encuentra en: "<< inicio_variable->estacion->combinacion->nombre <<std::endl;
+        agregarLineaRecorrido(&combinaciones_conocidas_p, inicio_v->estacion->combinacion);
+        std::cout << "\nDestino no se encuentra en: "<< inicio_v->estacion->combinacion->nombre <<std::endl;
         std::cout << "\nBuscando sus combinaciones"<<std::endl;
-        obtenerCombinacionesLinea(&nuevas_combinaciones, inicio_variable->estacion->combinacion);
+        obtenerCombinacionesLinea(&nuevas_combinaciones, inicio_v->estacion->combinacion);
         std::cout << "\nMostrando combinaciones"<<std::endl;
         mostrarRecorrido(nuevas_combinaciones);
         std::cout << "\nEliminando Combinaciones conocidas"<<std::endl;
-        mostrarRecorrido(*stack_combinaciones);
-
+        eliminarCombinacionesConocidas(&nuevas_combinaciones, stack_combinaciones_p);
+        // mostrarRecorrido(*stack_combinaciones);
+        agregarCombinacionesLimpias(&stack_combinaciones_p, nuevas_combinaciones);
     }
     // se guardan combinaciones conocidas
     *combinaciones_conocidas = combinaciones_conocidas_p;
     *stack_combinaciones = stack_combinaciones_p;
+    
+    std::cout << "\n CombinacionesExploradas: "<< obtenerLargoRecorrido(combinaciones_conocidas_p)<<std::endl;
+    if (quedanCombinacionesARecorrer(combinaciones_conocidas_p)){
+         std::cout << "\n FaltanCombinaciones: "<<std::endl;
+         explorarCombinacionesEnStack(stack_combinaciones_p, combinaciones_conocidas_p, &inicio_v);
+    }else{
+        //TERMINO
+        inicio_v = NULL;
+        *inicio_variable = inicio_v;
+    }
+
+}
+void explorarCombinacionesEnStack(recorrido stack_combinaciones, recorrido combinaciones_conocidas, recorrido *inicio_anterior){
+    std::cout<<"explorarCombinacionesEnStack"<<std::endl;
+    recorrido combinaciones_faltantes = NULL;
+
 }
 
+
+bool quedanCombinacionesARecorrer(recorrido combinaciones){
+    int largo = obtenerLargoRecorrido(combinaciones);
+    if (largo <= 10 ){
+        return true;
+    }
+    return false;
+}
+
+int obtenerLargoRecorrido(recorrido lista){
+    int contador = 0;
+    while(lista){
+        contador++;
+        lista = lista->link;
+    }
+    return contador;
+}
+
+void agregarCombinacionesLimpias(recorrido *stack_combinaciones, recorrido nuevas_combinaciones){
+    recorrido _stack_combinaciones = *stack_combinaciones;
+    recorrido _stack_combinaciones_limpias = NULL;
+    
+    while(_stack_combinaciones){
+        if(!inLista(_stack_combinaciones, nuevas_combinaciones->estacion)){
+            agregarLineaRecorrido(&_stack_combinaciones_limpias, _stack_combinaciones->estacion);
+        }
+        _stack_combinaciones = _stack_combinaciones->link;
+    }
+    while(nuevas_combinaciones){
+        if(!inLista(_stack_combinaciones, nuevas_combinaciones->estacion)){
+            agregarLineaRecorrido(&_stack_combinaciones_limpias, nuevas_combinaciones->estacion);
+        }
+        nuevas_combinaciones = nuevas_combinaciones->link;
+    }        
+    *stack_combinaciones = _stack_combinaciones_limpias;
+}
+
+void eliminarCombinacionesConocidas(recorrido *nuevas_combinaciones, recorrido stack_combinaciones){
+    recorrido combinaciones_limpias = NULL;
+    recorrido combinaciones_entrantes = *nuevas_combinaciones;
+    while (combinaciones_entrantes){
+        if (!inLista(stack_combinaciones, combinaciones_entrantes->estacion)){
+            agregarLineaRecorrido(&combinaciones_limpias, combinaciones_entrantes->estacion);
+        } else {
+            std::cout<<"Combinacion ya conocida: "<< combinaciones_entrantes->estacion->nombre <<std::endl;
+        }
+        combinaciones_entrantes = combinaciones_entrantes->link;
+    }
+
+    *nuevas_combinaciones = combinaciones_limpias;
+
+}
 
 /*                                          FIN CALCULAR RUTA                                                     */
 /******************************************************************************************************************/
