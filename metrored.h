@@ -15,7 +15,7 @@
     typedef ruta*recorrido;
 
     typedef struct rutas{
-        ruta estaciones;
+        recorrido estaciones;
         struct rutas*link;
     }rutas;
 
@@ -28,7 +28,10 @@
     int largoRecorrido(recorrido p_ruta);
     bool inLista(recorrido combinaciones, linea lx);
     
-    void buscarDestinoDesde(recorrido *inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas);
+    void guardarRuta(recorridos *ruta_ok, recorrido ruta);
+    void eliminarCombinacionesConocidas2(recorrido *faltantes_combinaciones, recorrido stack_combinaciones, recorrido combinaciones_conocidas);
+    void buscarDestinoDesde(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas_ok, recorridos *rutas_pendientes );
+    void buscarDestinoDesde2(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas);
     void eliminarCombinacionesConocidas(recorrido *nuevas_combinaciones, recorrido stack_combinaciones);
 
     void agregarCombinacionesLimpias(recorrido *stack_combinaciones, recorrido nuevas_combinaciones);
