@@ -27,17 +27,14 @@
     void pop(recorrido *combinaciones);
     int largoRecorrido(recorrido p_ruta);
     bool inLista(recorrido combinaciones, linea lx);
-    
+    void mostrarRutas(recorridos rutas);
     void guardarRuta(recorridos *ruta_ok, recorrido ruta);
     void eliminarCombinacionesConocidas2(recorrido *faltantes_combinaciones, recorrido stack_combinaciones, recorrido combinaciones_conocidas);
-    void buscarDestinoDesde(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas_ok, recorridos *rutas_pendientes );
-    void buscarDestinoDesde2(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas);
+    void buscarDestinoDesde(recorrido inicio_variable, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas_ok, recorrido *rutas_pendientes );
     void eliminarCombinacionesConocidas(recorrido *nuevas_combinaciones, recorrido stack_combinaciones);
 
     void agregarCombinacionesLimpias(recorrido *stack_combinaciones, recorrido nuevas_combinaciones);
-    bool quedanCombinacionesARecorrer(recorrido combinaciones);
     int obtenerLargoRecorrido(recorrido lista);
-    void explorarCombinacionesEnStack(recorrido stack_combinaciones, recorrido combinaciones_conocidas, recorrido *inicio_anterior);    
     /**
     * Funcion que valida si existe destino en la misma linea consultada
     * @param inicio Estacion inicio
