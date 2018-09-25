@@ -3,11 +3,14 @@ CXXFLAGS = -g3 -Wall
 
 LIBS=-lm
 
-funciones.o: clean funciones.cpp funciones.h
-	$(CXX) $(CXXFLAGS) -c funciones.cpp
+dataloader.o: clean dataloader.cpp dataloader.h
+	$(CXX) $(CXXFLAGS) -c dataloader.cpp
 
-all: funciones.o
-	$(CXX) $(CXXFLAGS) -o programa main.cpp funciones.o
+metrored.o: metrored.cpp dataloader.h
+	$(CXX) $(CXXFLAGS) -c metrored.cpp
+
+all: dataloader.o metrored.o 
+	$(CXX) $(CXXFLAGS) -o programa main.cpp dataloader.o metrored.o
 
 clean:
 	rm -fr *.o a.out programa

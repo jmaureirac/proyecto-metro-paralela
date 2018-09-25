@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 a.out
 
@@ -10,3 +11,15 @@ funciones.o
 *.o
 
 .idea
+=======
+
+a.out
+
+programa
+
+*.o
+
+.idea/
+.vscode/
+nbproject/
+>>>>>>> queue

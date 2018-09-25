@@ -2,7 +2,13 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+<<<<<<< HEAD
 #include "funciones.h"
+=======
+
+#include "dataloader.h"
+#include "metrored.h"
+>>>>>>> queue
 
 using namespace std;
 
@@ -14,11 +20,16 @@ int main(int argc, char** argv) {
     if ( argc <= 2 ) {
         char* flag = argv[1];
         if (strcmp(flag,"-v") == 0){
+<<<<<<< HEAD
             cout << "\nIntegrantes:\n\tLucas Henry\n\tEsteban Martínez\n\tJorge Maureira\nPiedad pofavo" << endl;
+=======
+            cout << "\nIntegrantes:\n\tLucas Henry\n\tEsteban Martínez\n\tJorge Maureira\n\n" << endl;
+>>>>>>> queue
         }
     } else {
         char* flag = argv[1];
         if(strcmp(flag,"-f") == 0){
+<<<<<<< HEAD
             /* Se declaran lineas del metro como listas lineales con dos punteros */
             linea l1, l2, l4, l4a, l5, l6;
 
@@ -31,12 +42,17 @@ int main(int argc, char** argv) {
             char* tl6 = NULL;
 
             /* Asignaciones de memoria */
+=======
+            linea l1, l2, l4, l4a, l5, l6;
+            
+>>>>>>> queue
             l1 = (linea) malloc(sizeof (nodo));
             l2 = (linea) malloc(sizeof (nodo));
             l4 = (linea) malloc(sizeof (nodo));
             l4a = (linea) malloc(sizeof (nodo));
             l5 = (linea) malloc(sizeof (nodo));
             l6 = (linea) malloc(sizeof (nodo));
+<<<<<<< HEAD
 
             tl1 = (char *) calloc(20, sizeof (char));
             tl2 = (char *) calloc(20, sizeof (char));
@@ -110,6 +126,31 @@ int main(int argc, char** argv) {
 
         } else {
                cout << "\nParámetros inválidos\n" << endl;
+=======
+            
+            generarLineasMetro(&l1, &l2, &l4, &l4a, &l5, &l6);
+            
+            linea inicio, destino;
+            inicio = (linea) malloc(sizeof (nodo));
+            destino = (linea) malloc(sizeof (nodo));
+            
+            inicio = getUbicacion(argv[2], l1, l2, l4, l4a, l5, l6);
+            destino = getUbicacion(argv[3], l1, l2, l4, l4a, l5, l6);
+
+            cout << "Estación de inicio  : " << inicio->nombre << endl;
+            cout << "Estación destino    : " << destino->nombre << endl << endl;
+            
+            testingRecorrerLinea(inicio, destino);
+            
+//            cout << calcularDistanciaMismaLinea(inicio, destino) << endl;
+//            
+//            cout << destino->codigo << endl;
+//            hacerCombinacion(&destino);
+//            cout << destino->codigo << endl;
+            
+        } else {
+            cout << "\nParámetros inválidos\n" << endl;
+>>>>>>> queue
         }
 
     }
