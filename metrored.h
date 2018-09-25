@@ -34,6 +34,7 @@
     void eliminarCombinacionesConocidas(recorrido *nuevas_combinaciones, recorrido stack_combinaciones);
     
     recorrido rutaMasCorta(recorridos rutas);
+    void fixRutaMasCorta(recorrido *ruta);
 
     void agregarCombinacionesLimpias(recorrido *stack_combinaciones, recorrido nuevas_combinaciones);
     int obtenerLargoRecorrido(recorrido lista);
