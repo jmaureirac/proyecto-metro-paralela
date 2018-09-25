@@ -631,6 +631,9 @@ void buscarDestinoDesde(recorrido inicio_varabiale, linea destino, recorrido *st
         std::cout<<"Agregando combinaciones no recorridas"<<std::endl;
         mostrarRecorrido(nuevas_combinaciones);                        
         agregarCombinacionesLimpias(&stack_combinaciones_p, nuevas_combinaciones);
+        if(nuevas_combinaciones){
+             agregarCombinacionesLimpias(&stack_combinaciones_p, nuevas_combinaciones);
+        }
         std::cout<<"Mostrando stack de combinaciones"<<std::endl;        
         mostrarRecorrido(stack_combinaciones_p);
         while(nuevas_combinaciones){
