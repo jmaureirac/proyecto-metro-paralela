@@ -218,11 +218,23 @@ void fixRutaMasCorta(recorrido *ruta){
     recorrido _ruta = *ruta;
     recorrido _ruta_formateada = *ruta;
     
-    while(_ruta_formateada){
-            std::cout<<_ruta_formateada->estacion->codigo<<"-";
-
-        if(!inLista(_ruta, _ruta_formateada->estacion)){
-            std::cout<<_ruta_formateada->estacion->codigo<<std::endl;
+//    while(_ruta_formateada){
+//            std::cout<<_ruta_formateada->estacion->codigo<<"-";
+//
+//        if(!inLista(_ruta, _ruta_formateada->estacion)){
+//            std::cout<<_ruta_formateada->estacion->codigo<<std::endl;
+//        }
+//        _ruta_formateada = _ruta_formateada->link;
+//    }
+    while(_ruta_formateada != NULL) {
+        if(_ruta_formateada->link == NULL) {
+            std::cout << _ruta_formateada->estacion->nombre << "\n\n";
+        } else {
+            if( _ruta_formateada->estacion->nombre == _ruta_formateada->link->estacion->nombre ) {
+                _ruta_formateada = _ruta_formateada->link;
+            }
+            if(_ruta_formateada->link == NULL) std::cout << _ruta_formateada->estacion->nombre << "\n\n";
+            else std::cout << _ruta_formateada->estacion->nombre << " - ";
         }
         _ruta_formateada = _ruta_formateada->link;
     }
