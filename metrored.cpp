@@ -3,7 +3,7 @@
 #include <cstring>
 
 /******************************************************************************************************************/
-/*          OPERACIONES OPERACIONES SOBRE UNA LISTA DE TIPO RECORRIDO, AGREGAR, QUITAR, MOSTRAR, LARGO            */
+/*           OPERACIONES SOBRE UNA LISTA DE TIPO RECORRIDO, AGREGAR, QUITAR, MOSTRAR, LARGO            */
 
 // DOCUMENTAR
 void agregarLineaRecorrido(recorrido *p_ruta, linea p_estacion) {
@@ -219,16 +219,7 @@ void testingRecorrerLinea(linea inicio, linea destino) {
     }
 }
 
-void mostrarRutas(recorridos rutas){
-    int cont = 0;
-    while(rutas){
-        std::cout<<"Mostrando Recorridos Encontrados"<<std::endl;
-        std::cout<<"Recorrido Numero: "<< cont <<std::endl;
-        mostrarRecorrido(rutas->estaciones);
-        cont++;
-        rutas = rutas->link;
-    }
-}
+
 
 void buscarDestinoDesde(recorrido inicio_varabiale, linea destino, recorrido *stack_combinaciones, recorrido *combinaciones_conocidas, recorridos *rutas_ok, recorrido *rutas_pendientes ){
     recorridos _ruta_ok = *rutas_ok;    
@@ -263,6 +254,17 @@ void buscarDestinoDesde(recorrido inicio_varabiale, linea destino, recorrido *st
     *rutas_pendientes = _ruta_pendiente;
     *combinaciones_conocidas = combinaciones_conocidas_p;
     *stack_combinaciones = stack_combinaciones_p;
+}
+
+void mostrarRutas(recorridos rutas){
+    int cont = 0;
+    while(rutas){
+        std::cout<<"Mostrando Recorridos Encontrados"<<std::endl;
+        std::cout<<"Recorrido Numero: "<< cont <<std::endl;
+        mostrarRecorrido(rutas->estaciones);
+        cont++;
+        rutas = rutas->link;
+    }
 }
 
 void guardarRuta(recorridos *ruta_ok, recorrido ruta){
