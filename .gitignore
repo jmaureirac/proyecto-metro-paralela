@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-
-a.out
-
-programa
-
-funciones.o
-
-*.xml
-
-*.o
-
-.idea
-=======
-
-a.out
-
 programa
 
 *.o
@@ -22,4 +5,4 @@ programa
 .idea/
 .vscode/
 nbproject/
->>>>>>> queue
+
